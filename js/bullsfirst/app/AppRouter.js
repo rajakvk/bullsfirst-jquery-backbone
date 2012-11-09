@@ -23,14 +23,16 @@ define(['bullsfirst/domain/UserContext',
         'bullsfirst/framework/Message',
         'bullsfirst/framework/MessageBus',
         'bullsfirst/views/HomePage',
+        'bullsfirst/views/OpenAccount',
         'bullsfirst/views/UserPage'],
-       function(UserContext, Message, MessageBus, HomePage, UserPage) {
+       function(UserContext, Message, MessageBus, HomePage, OpenAccount, UserPage) {
     return Backbone.Router.extend({
 
         pages: {},
 
         routes: {
             '': 'showHomePage',
+            'openAccount': 'showOpenAccountPage',
             'user/:tab': 'showUserPage'
         },
 
@@ -40,6 +42,7 @@ define(['bullsfirst/domain/UserContext',
         initialize: function() {
             this.pages = {
                 'home': new HomePage(),
+                'openAccount': new OpenAccount(),
                 'user': new UserPage()
             };
 
@@ -62,6 +65,10 @@ define(['bullsfirst/domain/UserContext',
 
         showHomePage: function() {
             this.showPage(this.pages['home']);
+        },
+        
+        showOpenAccountPage: function(){
+            this.showPage(this.pages['openAccount']);
         },
 
         showUserPage: function(tab) {
