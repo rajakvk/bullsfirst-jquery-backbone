@@ -94,9 +94,9 @@
             </section>
         </section>
 
-       	<!-- Open Account Page -->
-       	<section id="open-account-page" class="nodisplay">
-        	<header>
+       <!-- Open Account Page -->
+       <section id="open-account-page" class="nodisplay">
+            <header>
                 <hgroup>
                     <h1 class="ir">Bullsfirst</h1>
                     <h2>Calling All Bull Markets</h2>
@@ -123,37 +123,36 @@
              <section id="open-account-section">
                 <h1>Open an Account</h1>
                 <form id="open-account-form">
-	                <p class="mandatory-text">All the field below are required.</p>
-                    <label for="firstname">First Name</label>
+                    <p class="mandatory-text">All the field below are required.</p>
+                    <label for="oa-firstname">First Name</label>
                     <input
-                        id="firstname"
-                        name="firstname"
+                        id="oa-firstname"
+                        name="oa-firstname"
                         type="text"
                         class="validate[required]">
-                    <label for="lastname">Second Name</label>
+                    <label for="oa-lastname">Second Name</label/>
                     <input
-                        id="lastname"
-                        name="lastname"
+                        id="oa-lastname"
+                        name="oa-lastname"
                         type="text"
-                        class="validate[required]">
-                    <label for="username">User Name</label>
+                        class="validate[required]"/>
+                    <label for="oa-username">User Name</label>
                     <input
-                        id="username"
-                        name="username"
+                        id="oa-username"
+                        name="oa-username"
                         type="text"
-                        class="validate[required]">
-                    <label for="password">Password</label>
-                    <input
-                        id="password"
-                        name="password"
+                        class="validate[required]"/>
+                    <label for="oa-password">Password</label>
+                    <input id="oa-password" 
+                        name="oa-password"
                         type="password"
-                        class="validate[required]">
-                    <label for="confirmPassword">Confirm Password</label>
+                        class="validate[required]"/>
+                    <label for="oa-confirmPassword">Confirm Password</label>
                     <input
-                        id="confirmPassword"
-                        name="confirmPassword"
+                        id="oa-confirmPassword"
+                        name="oa-confirmPassword"
                         type="password"
-                        class="validate[required]">
+                        class="validate[required, equals[oa-password]]"/>
                     <a id="open-account-button" class="button large open-account popsicle-icon" href="#"><span>Open Account</span></a>
                     <a id="cancel-button" class="button medium" href="#"><span>Cancel</span></a>
                 </form>
