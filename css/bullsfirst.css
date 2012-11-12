@@ -466,18 +466,18 @@ a.button.large span  {
 }
 
 #open-account-page .mandatory-text {
-  margin:0 0 10px 0;
-  color: #fff;
+	margin:0 0 10px 0;
+	color: #fff;
 }
 
 #open-account-button{
-  float: left;
+	float: left;
     margin: 10px 0 0 0;
 }
  
 #cancel-button {
-  float: left;
-  margin: 60px 0 0 20px 
+	float: left;
+	margin: 60px 0 0 20px	
 }
 /* -----------------------------------------------------------------------------
  * User Page - Header

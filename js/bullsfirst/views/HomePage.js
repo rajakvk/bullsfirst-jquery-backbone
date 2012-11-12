@@ -65,7 +65,7 @@ define(['bullsfirst/domain/Credentials',
         },
 
         openAccount: function() {
-            alert('Open Account');
+			window.location.hash = '#openAccount';
             return false;
         },
 

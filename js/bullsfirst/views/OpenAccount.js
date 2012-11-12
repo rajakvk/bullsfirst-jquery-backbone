@@ -27,18 +27,24 @@ define(['bullsfirst/domain/Credentials',
         el: '#open-account-page',
 
         events: {
-			'click #open-account-button': 'openAccount'
+			'click #open-account-button': 'handleOpenAccountButton',
+			'click #cancel-button': 'handleCloseButton'
         },
 
         initialize: function() {
-
+			$('#open-account-form').validationEngine();
         },
 
-        openAccount: function(event) {
+        handleOpenAccountButton: function(event) {
 			if ($('#open-account-form').validationEngine('validate')) {
 				alert('valid');
             }
             return false;
-        }
+        },
+		
+		handleCloseButton: function(){
+			$('#open-account-form').validationEngine('hide');
+		}
+		
     });
 });
