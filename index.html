@@ -127,32 +127,37 @@
                     <label for="oa-firstname">First Name</label>
                     <input
                         id="oa-firstname"
-                        name="oa-firstname"
+                        name="firstname"
                         type="text"
-                        class="validate[required,minSize[8]]">
-                    <label for="oa-lastname">Second Name</label/>
+                        class="validate[required,custom[onlyLetterSp]]"
+                        placeholder="Enter your first name" />
+                    <label for="oa-lastname">Second Name</label>
                     <input
                         id="oa-lastname"
-                        name="oa-lastname"
+                        name="lastname"
                         type="text"
-                        class="validate[required,minSize[8]]"/>
+                        class="validate[required,custom[onlyLetterSp]]"
+                        placeholder="Enter your last name" />
                     <label for="oa-username">User Name</label>
                     <input
                         id="oa-username"
-                        name="oa-username"
+                        name="username"
                         type="text"
-                        class="validate[required,minSize[8]]"/>
+                        class="validate[required]" 
+                        placeholder= "Enter a username" />
                     <label for="oa-password">Password</label>
                     <input id="oa-password" 
-                        name="oa-password"
+                        name="password"
                         type="password"
-                        class="validate[required,minSize[8]]"/>
+                        class="validate[required]" 
+                        placeholder="Enter a password" />
                     <label for="oa-confirmPassword">Confirm Password</label>
                     <input
                         id="oa-confirmPassword"
-                        name="oa-confirmPassword"
+                        name="confirmPassword"
                         type="password"
-                        class="validate[required, equals[oa-password]]"/>
+                        class="validate[required, equals[oa-password]]"
+                        placeholder="Retype the password" />
                     <a id="open-account-button" class="button large open-account popsicle-icon" href="#"><span>Open Account</span></a>
                     <a id="cancel-button" class="button medium" href="#"><span>Cancel</span></a>
                 </form>
@@ -256,6 +261,9 @@
     <script src="js/vendor/handlebars-1.0.rc.1.js"></script>
     <script src="js/vendor/jquery.validationEngine-2.5.2.js"></script>
     <script src="js/vendor/jquery.validationEngine-en-2.5.2.js"></script>
+    <!-- The two libraries below are needed to serialize forms -->
+    <script src="js/vendor/form2js.js"></script>
+    <script src="js/vendor/jquery.toObject.js"></script>
     <!-- The two libraries below are needed to do base64 encoding of authentication header -->
     <script src="js/vendor/base64_encode.js"></script>
     <script src="js/vendor/utf8_encode.js"></script>
