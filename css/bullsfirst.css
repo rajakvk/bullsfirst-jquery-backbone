@@ -136,7 +136,7 @@ a.button.transfer-icon span  {
 }
 
 a.button.popsicle-icon span  {
-    background: url(../img/popsicle.png) no-repeat;
+    background: url(../img/popsicle_white.png) no-repeat;
 }
 
 a.button.medium {
@@ -467,7 +467,7 @@ a.button.large span  {
 
 #open-account-page .mandatory-text {
 	margin:0 0 10px 0;
-	color: #fff;
+	color: #F8E5C9;
 }
 
 #open-account-button{
@@ -475,10 +475,16 @@ a.button.large span  {
     margin: 10px 0 0 0;
 }
  
-#cancel-button {
+#oa-cancel-button {
 	float: left;
-	margin: 60px 0 0 20px	
+	margin: 60px 0 0 20px;
+  background-color: #c03b00;
 }
+
+#oa-cancel-button:hover {
+  background-color: #F36733;
+}
+
 /* -----------------------------------------------------------------------------
  * User Page - Header
  * -------------------------------------------------------------------------- */

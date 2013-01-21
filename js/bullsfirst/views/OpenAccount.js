@@ -41,7 +41,7 @@ define(['bullsfirst/domain/Credentials',
 
         events: {
 			'click #open-account-button': 'handleOpenAccountButton',
-			'click #cancel-button': 'handleCloseButton'
+			'click #oa-cancel-button': 'handleCloseButton'
         },
 
         initialize: function() {
