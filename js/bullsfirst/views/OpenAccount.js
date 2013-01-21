@@ -15,22 +15,22 @@
  */
 
 /**
- * bullsfirst/views/HomePage
+ * bullsfirst/views/OpenAccount
  *
  * @author Kanakaraj Venkataswamy
  */
-define(['bullsfirst/domain/Credentials',
+define(['bullsfirst/services/AccountService',
+		'bullsfirst/services/BrokerageAccountService',
+		'bullsfirst/domain/Credentials',
         'bullsfirst/domain/ExternalAccount',
         'bullsfirst/domain/ExternalAccounts',
-		'bullsfirst/domain/User',
-		'bullsfirst/domain/UserContext',
         'bullsfirst/framework/MessageBus',
         'bullsfirst/framework/Page',
-		'bullsfirst/framework/errorUtil',
-        'bullsfirst/services/UserService',
-        'bullsfirst/services/AccountService',
-        'bullsfirst/services/BrokerageAccountService'],
-       function(Credentials, ExternalAccount, ExternalAccounts, User, UserContext, MessageBus, Page, ErrorUtil, UserService, AccountService, BrokerageAccountService) {
+		'bullsfirst/framework/ErrorUtil',
+		'bullsfirst/domain/User',
+		'bullsfirst/domain/UserContext',
+        'bullsfirst/services/UserService'],
+       function(AccountService, BrokerageAccountService, Credentials, ExternalAccount, ExternalAccounts, MessageBus, Page, ErrorUtil, User, UserContext, UserService) {
     return Page.extend({
 		
 		brokerageAccountId: 0,
