@@ -41,7 +41,7 @@ define(['bullsfirst/services/AccountService',
 
         events: {
 			'click #open-account-button': 'handleOpenAccountButton',
-			'click #oa-cancel-button': 'handleCloseButton'
+			'click #oa-cancel-button': 'handleCancelButton'
         },
 
         initialize: function() {
@@ -96,7 +96,7 @@ define(['bullsfirst/services/AccountService',
 			MessageBus.trigger('UserLoggedInEvent');
 		},
 		
-		handleCloseButton: function(){
+		handleCancelButton: function(){
 			$('#open-account-form').validationEngine('hide');
 		},
 		
