@@ -24,13 +24,14 @@ define(['bullsfirst/services/AccountService',
 		'bullsfirst/domain/Credentials',
         'bullsfirst/domain/ExternalAccount',
         'bullsfirst/domain/ExternalAccounts',
+        'bullsfirst/framework/Message',
         'bullsfirst/framework/MessageBus',
         'bullsfirst/framework/Page',
 		'bullsfirst/framework/ErrorUtil',
 		'bullsfirst/domain/User',
 		'bullsfirst/domain/UserContext',
         'bullsfirst/services/UserService'],
-       function(AccountService, BrokerageAccountService, Credentials, ExternalAccount, ExternalAccounts, MessageBus, Page, ErrorUtil, User, UserContext, UserService) {
+       function(AccountService, BrokerageAccountService, Credentials, ExternalAccount, ExternalAccounts, Message, MessageBus, Page, ErrorUtil, User, UserContext, UserService) {
     return Page.extend({
 		
 		brokerageAccountId: 0,
@@ -54,6 +55,11 @@ define(['bullsfirst/services/AccountService',
             }
             return false;
         },
+
+        createUser: function(){
+			UserService.createUser(
+					this.form2CreateUserRequest(), _.bind(this.createUserDone, this), ErrorUtil.showError);
+		},
 		
 		createUserDone: function(data, textStatus, jqXHR){
 			// Add user to UserContext
@@ -93,16 +99,11 @@ define(['bullsfirst/services/AccountService',
 		
 		transferCashDone: function(data, textStatus, jqXHR){
 			// TODO: Erase the form
-			MessageBus.trigger('UserLoggedInEvent');
+			MessageBus.trigger(Message.UserLoggedInEvent);
 		},
 		
 		handleCancelButton: function(){
 			$('#open-account-form').validationEngine('hide');
-		},
-		
-		createUser: function(){
-			UserService.createUser(
-					this.form2CreateUserRequest(), _.bind(this.createUserDone, this), ErrorUtil.showError);
 		},
 		
 		// ------------------------------------------------------------
