@@ -38,7 +38,8 @@ define(
 
         // The application root. The build process will take care of changing this to '/dist/'.
         // If you then deploy /dist as a root directory for your application, this should be changed to '/'.
-        var appRoot = '/projects/bullsfirst-jquery-backbone/src/';
+        //var appRoot = '/projects/bullsfirst-jquery-backbone/src/';
+        var appRoot = '/src/';
 
         return {
             start: function start() {
