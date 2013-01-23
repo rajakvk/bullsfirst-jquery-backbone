@@ -21,13 +21,13 @@
  */
 define(
     [
-        'framework/BaseView',
         'app/domain/Repository',
         'app/widgets/account-chart/AccountChartWidget',
         'app/widgets/account-table/AccountTableWidget',
+        'framework/BaseView',
         'text!app/pages/accounts/AccountsTabTemplate.html'
     ],
-    function(BaseView, Repository, AccountChartWidget, AccountTableWidget, AccountsTabTemplate) {
+    function(Repository, AccountChartWidget, AccountTableWidget, BaseView, AccountsTabTemplate) {
         'use strict';
 
         return BaseView.extend({
@@ -41,7 +41,7 @@ define(
 
             events: {
                 'click .js-add-account-button': 'addAccount',
-                'click .js-refresh-button': 'refreshAccounts'
+                'click .js-refreshButton': 'refreshAccounts'
             },
 
             postRender: function() {
