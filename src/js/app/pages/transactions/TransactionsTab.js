@@ -21,10 +21,13 @@
  */
 define(
     [
+        'app/domain/Repository',
+        'app/widgets/transaction-filter/TransactionsFilterWidget',
+        'app/widgets/transaction-table/TransactionsTableWidget',
         'framework/BaseView',
         'text!app/pages/transactions/TransactionsTabTemplate.html'
     ],
-    function(BaseView, TransactionsTabTemplate) {
+    function(Repository, TransactionsFilterWidget, TransactionsTableWidget, BaseView, TransactionsTabTemplate) {
         'use strict';
 
         return BaseView.extend({
@@ -38,6 +41,21 @@ define(
 
             postRender: function() {
                 this.addChildren([
+                    {
+                        id: 'TransactionsFilterWidget',
+                        viewClass: TransactionsFilterWidget,
+                        parentElement: this.$el,
+                        options: {
+                            collection: Repository.getBrokerageAccounts()
+                        }
+                    }, {
+                        id: 'TransactionsTableWidget',
+                        viewClass: TransactionsTableWidget,
+                        parentElement: this.$el,
+                        options: {
+                            model: Repository.getBrokerageAccounts()
+                        }
+                    }
                 ]);
             }
         });

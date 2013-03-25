@@ -28,20 +28,35 @@ define(
         'jqueryalerts'
     ],
     function($) {
-    'use strict';
+        'use strict';
 
-    return {
-        showError: function(message) {
-            $.alert(message, {
-                title: 'Error',
-                icon: 'alert',
-                buttons: {
-                    'Ok': function() {
-                        // make sure we always add this line in our handlers
-                        $(this).dialog('close');
+        return {
+
+            showConfirmation: function(message) {
+                $.alert(message, {
+                    title: 'Confirmation',
+                    icon: 'check',
+                    buttons: {
+                        'Ok': function() {
+                            // make sure we always add this line in our handlers
+                            $(this).dialog('close');
+                        }
                     }
-                }
-            });
-        }
-    };
-});
+                });
+            },
+
+            showError: function(message) {
+                $.alert(message, {
+                    title: 'Error',
+                    icon: 'alert',
+                    buttons: {
+                        'Ok': function() {
+                            // make sure we always add this line in our handlers
+                            $(this).dialog('close');
+                        }
+                    }
+                });
+            }
+        };
+    }
+);

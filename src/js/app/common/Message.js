@@ -21,20 +21,42 @@
  *
  * @author Naresh Bhatia
  */
-define({
-    AccountClick: 'Account:click',
-    AccountClickEditIconRaw: 'Account:clickEditIconRaw',
-    AccountClickRaw: 'Account:clickRaw',
-    AccountMouseOut: 'Account:mouseout',
-    AccountMouseOutRaw: 'Account:mouseoutRaw',
-    AccountMouseOver: 'Account:mouseover',
-    AccountMouseOverRaw: 'Account:mouseoverRaw',
-    AccountStoppedEditing: 'Account:stoppedEditing',
-    PageBeforeChange: 'PageBeforeChange',
-    PageChange: 'PageChange',
-    SelectedAccountChanged: 'SelectedAccountChanged',
-    TabSelectionRequest: 'TabSelectionRequest',
-    TradeRequest: 'TradeRequest',
-    UserLoggedInEvent: 'UserLoggedInEvent',
-    UserLoggedOutEvent: 'UserLoggedOutEvent'
+define([
+    'framework/Message',
+    'underscore'
+],
+function(frameworkMessage, _) {
+    'use strict';
+
+    var message =  _.extend({
+        AccountClick: 'Account:click',
+        AccountClickEditIconRaw: 'Account:clickEditIconRaw',
+        AccountClickRaw: 'Account:clickRaw',
+        AccountMouseOut: 'Account:mouseout',
+        AccountMouseOutRaw: 'Account:mouseoutRaw',
+        AccountMouseOver: 'Account:mouseover',
+        AccountMouseOverRaw: 'Account:mouseoverRaw',
+        AccountStoppedEditing: 'Account:stoppedEditing',
+        ExternalAccountsUpdated: 'ExternalAccounts:Updated',
+        ModalLoad: 'Modal:load',
+        FilterLoaded: 'FilterLoaded',
+        OrderFilterApply: 'Order:clickFilterApply',
+        OrderFilterChanged: 'Order:orderFilterChanged',
+        OrderFilterReset: 'Order:clickFilterReset',
+        SelectedAccountChanged: 'SelectedAccountChanged',
+        TabSelectionRequest: 'TabSelectionRequest',
+        TradeCostUpdate: 'TradeCostUpdate',
+        TradeRequest: 'TradeRequest',
+        TradeSymbolChange: 'TradeSymbolChange',
+        TransactionFilterApply: 'Transaction:clickFilterApply',
+        TransactionFilterChanged: 'Transaction:transactionFilterChanged',
+        TransactionFilterReset: 'Transaction:clickFilterReset',
+        UpdateOrders: 'UpdateOrders',
+        UpdateTransactions: 'UpdateTransactions',
+        UserLoggedInEvent: 'UserLoggedInEvent',
+        UserLoggedOutEvent: 'UserLoggedOutEvent'
+    }, frameworkMessage);
+
+    return message;
+
 });

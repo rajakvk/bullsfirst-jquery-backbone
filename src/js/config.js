@@ -35,6 +35,12 @@ var require = {
         jqueryValidationEngine:      'vendor/jquery.validationEngine-2.5.2',
         jqueryValidationEngineRules: 'vendor/jquery.validationEngine-en-2.5.2',
         jqueryTreeTable:             'vendor/jquery.treeTable-20121109',
+        jqueryExtensions:            'framework/JqueryExtensions',
+
+        // Form Serialization
+        // TODO: Find a way to remove these from OpenAccountFormWidget
+        form2js:                     'vendor/form2js',
+        jqueryToObject:              'vendor/jquery.toObject',
 
         // Underscore
         underscore:                  'vendor/underscore-1.4.3',
@@ -56,6 +62,9 @@ var require = {
         // Date library
         moment:                      'vendor/moment-1.7.2',
 
+        // Formatting select boxes
+        jqueryselectbox:             'vendor/jquery.selectbox-0.2',
+
         // jQuery Alerts (http://www.codeproject.com/Articles/295236/jQuery-UI-Alerts-Dialog-using-ThemeRollers)
         jqueryalerts:                'vendor/jquery.alerts',
 
@@ -74,6 +83,14 @@ var require = {
             exports: 'base64_encode'
         },
 
+        form2js: {
+            exports: 'form2js'
+        },
+
+        jqueryToObject: {
+            deps: ['form2js']
+        },
+
         handlebars: {
             exports: 'Handlebars'
         },
@@ -87,6 +104,10 @@ var require = {
         },
 
         jqueryformat: {
+            deps: ['jquery']
+        },
+
+        jqueryselectbox: {
             deps: ['jquery']
         },
 

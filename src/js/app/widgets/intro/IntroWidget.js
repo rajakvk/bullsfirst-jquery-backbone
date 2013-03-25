@@ -34,14 +34,6 @@ define(
             template: {
                 name: 'IntroTemplate',
                 source: IntroTemplate
-            },
-
-            events: {
-                'click .open-account-link': 'openAccount'
-            },
-
-            openAccount: function() {
-                return false;
             }
         });
     }

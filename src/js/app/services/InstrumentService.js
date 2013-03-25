@@ -23,8 +23,16 @@ define(function() {
     'use strict';
 
     return {
-        getInstruments: function(doneCallbacks, failCallbacks) {
-            $.ajax({ url: '/bfexch-javaee/rest/instruments' })
+        getInstruments: function(doneCallbacks, failCallbacks, context) {
+
+            // Handle an optional context parameter.
+            // Allows us to pass an execution context for callbacks
+            context = context || this;
+
+            $.ajax({
+                url: '/bfexch-javaee/rest/instruments',
+                context: context
+            })
             .then(doneCallbacks, failCallbacks);
         }
     };

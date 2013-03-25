@@ -30,7 +30,8 @@ define(
         'framework/MessageBus',
         'text!app/pages/transactions/TransactionsPageTemplate.html'
     ],
-    function(Message, Repository, TransactionsTab, FooterWidget, UserPageHeaderWidget, BaseView, MessageBus, TransactionsPageTemplate) {
+    function(Message, Repository, TransactionsTab, FooterWidget,
+        UserPageHeaderWidget, BaseView, MessageBus, TransactionsPageTemplate) {
         'use strict';
 
         return BaseView.extend({
@@ -64,6 +65,9 @@ define(
                         parentElement: this.$el
                     }
                 ]);
+            },
+            postPlace: function(){
+                MessageBus.trigger(Message.FilterLoaded);
             }
         });
     }

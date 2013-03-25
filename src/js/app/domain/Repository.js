@@ -17,10 +17,10 @@
 /**
  * app/domain/Repository
  *
- * This is a singleton object that maintains the context of the logged in user.
- * The context consists of the following:
- *   user: User
- *   credentials: Credentials
+ * This is a singleton object that maintains the domain layer of the application.
+ * Domain objects in this layer generally live beyond the life of views in the
+ * presentation layer. When views are created, they are generally connected to
+ * domain objects that are already present in this repository.
  *
  * @author Naresh Bhatia
  */
@@ -32,13 +32,18 @@ define(
         'app/domain/BrokerageAccounts',
         'app/domain/Credentials',
         'app/domain/ExternalAccounts',
+        'app/domain/Orders',
+        'app/domain/Transactions',
         'app/domain/User',
+        'app/services/InstrumentService',
         'framework/ErrorUtil',
         'framework/Formatter',
         'framework/MessageBus',
+        'moment',
         'underscore'
     ],
-    function(Message, BaseAccount, BaseAccounts, BrokerageAccounts, Credentials, ExternalAccounts, User, ErrorUtil, Formatter, MessageBus, _) {
+    function(Message, BaseAccount, BaseAccounts, BrokerageAccounts,
+     Credentials, ExternalAccounts, Orders, Transactions, User, InstrumentService, ErrorUtil, Formatter, MessageBus, moment, _) {
         'use strict';
 
         // Module level variables act as singletons
@@ -48,6 +53,17 @@ define(
         var _brokerageAccounts = new BrokerageAccounts();
         var _externalAccounts = new ExternalAccounts();
         var _selectedAccount = null;
+        var _instruments = null;
+        var _orders = new Orders();
+        var _transactions = new Transactions();
+        var _orderFilterCriteria = {
+            fromDate: moment(new Date()).format('YYYY-MM-DD'),
+            toDate: moment(new Date()).format('YYYY-MM-DD')
+        };
+        var _transactionsFilterCriteria = {
+            fromDate: moment(new Date()).format('YYYY-MM-DD'),
+            toDate: moment(new Date()).format('YYYY-MM-DD')
+        };
 
         var _repository = {
             getUser: function() { return _user; },
@@ -56,6 +72,29 @@ define(
             getBrokerageAccounts: function() { return _brokerageAccounts; },
             getExternalAccounts: function() { return _externalAccounts; },
             getSelectedAccount: function() { return _selectedAccount; },
+            getInstruments: function() { return _instruments; },
+            getOrderFilters: function() { return _orderFilterCriteria; },
+            getTransactionsFilters: function() { return _transactionsFilterCriteria; },
+            getOrders: function() {
+                _orders.fetch({
+                    data: _orderFilterCriteria
+                });
+                return _orders;
+            },
+            getTransactions: function() {
+                _transactions.fetch({
+                    data: _transactionsFilterCriteria
+                });
+                return _transactions;
+            },
+
+            setOrderFilterCriteria: function( filtercriteria ) {
+                _orderFilterCriteria = filtercriteria;
+            },
+
+            setTransactionsFilterCriteria: function( filtercriteria ) {
+                _transactionsFilterCriteria = filtercriteria;
+            },
 
             getBrokerageAccount: function(id) { return _brokerageAccounts.get(id); },
 
@@ -113,6 +152,8 @@ define(
                 {
                     this.setSelectedAccount(_brokerageAccounts.at(0));
                 }
+
+                MessageBus.trigger(Message.ExternalAccountsUpdated);
             },
 
             // Update base accounts (combination of brokerage + external accounts)
@@ -142,6 +183,10 @@ define(
                 _baseAccounts.reset(accounts);
             },
 
+            updateInstruments: function() {
+                InstrumentService.getInstruments( function( data ) { _instruments = data; }, ErrorUtil.showError, this);
+            },
+
             isUserLoggedIn: function() {
                 return _credentials.isInitialized();
             }
@@ -150,6 +195,7 @@ define(
         // Update accounts whenever user logs in
         MessageBus.on(Message.UserLoggedInEvent, function() {
             _repository.updateAccounts();
+            _repository.updateInstruments();
         });
 
         return _repository;

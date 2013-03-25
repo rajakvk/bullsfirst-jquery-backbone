@@ -25,12 +25,14 @@ define(
     [
         'app/common/Message',
         'app/domain/Repository',
+        'app/widgets/trade/TradeWidget',
+        'app/widgets/transfer/TransferWidget',
         'backbone',
         'framework/BaseView',
         'framework/MessageBus',
         'text!app/widgets/user-page-header/UserPageHeaderTemplate.html'
     ],
-    function(Message, Repository, Backbone, BaseView, MessageBus, UserPageHeaderTemplate) {
+    function(Message, Repository, TradeWidget, TransferWidget, Backbone, BaseView, MessageBus, UserPageHeaderTemplate) {
         'use strict';
 
         return BaseView.extend({
@@ -68,11 +70,38 @@ define(
             },
 
             trade: function() {
-                return false;
+
+                this.addChildren([
+                    {
+                        id: 'TradeWidget',
+                        viewClass: TradeWidget,
+                        parentElement: this.$el,
+                        options: {
+                            model: {
+                                accounts: Repository.getBrokerageAccounts().toJSON(),
+                                selectedAccount: Repository.getSelectedAccount()
+                            }
+                        }
+                    }
+                ]);
+
             },
 
             transfer: function() {
-                return false;
+
+                this.addChildren([
+                    {
+                        id: 'TransferWidget',
+                        viewClass: TransferWidget,
+                        parentElement: this.$el,
+                        options: {
+                            model: {
+                                accounts: Repository.getBaseAccounts().toJSON(),
+                                selectedAccount: Repository.getSelectedAccount()
+                            }
+                        }
+                    }
+                ]);
             },
 
             selectTab: function(page) {

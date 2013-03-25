@@ -1,0 +1,76 @@
+/* -----------------------------------------------------------------------------
+ * modals
+ * -------------------------------------------------------------------------- */
+
+// z-index of various layers:
+//   ModalOverlayView: 489  (raised to 499 if level2 dialog is up)
+//   ModalView:        499
+
+.modal {
+    font: 12px/25px Aller;
+    width: 291px;
+    position: absolute;
+    z-index: 499;
+    right: 0px;
+    top: 0px;
+
+    &.modal-level2 {
+        background: $brand-color;
+        border: 10px solid $container-background-color;
+        -moz-background-clip: padding;
+        -webkit-background-clip: padding;
+        background-clip: padding-box;
+
+        header {
+            background: $brand-color;
+            color: $black;
+        }
+    }
+
+    header {
+        height: auto;
+        margin: 10px 10px 30px;
+    }
+
+    section {
+        margin: 0 9px 0 10px;
+    }
+
+    table {
+        width: 99%;
+    }
+
+    th {
+        text-align: left;
+        padding-left: 16px;
+    }
+
+    tr:nth-child(odd) {
+        background: $modal-table-stripe;
+    }
+}
+
+.modal-close {
+    width: 17px;
+    height: 17px;
+    background: url('../img/modal-close.png');
+    position: absolute;
+    display: inline;
+    top: 10px;
+    right: 9px;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    opacity: 0.75;
+    width: 100%;
+    background: #3F3F3F;
+    z-index: 489;
+
+    &.stacked {
+        z-index: 499;
+    }
+}

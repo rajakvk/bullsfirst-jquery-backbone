@@ -51,6 +51,22 @@ define(
                 Handlebars.registerHelper('formatDateTime', function(date) {
                     return Formatter.formatDateTime(date);
                 });
+
+                Handlebars.registerHelper('ifOrderActive', function(status, options) {
+                    if ( status === 'New' || status === 'PartiallyFilled' || status === 'PendingNew' ) {
+                        return options.fn(this);
+                    }
+                });
+
+                Handlebars.registerHelper('ifEqual', function (left, right, options) {
+                    if (Handlebars.Utils.isEmpty(left) ||
+                        Handlebars.Utils.isEmpty(right) ||
+                        (left !== right)) {
+                        return options.inverse(this);
+                    } else {
+                        return options.fn(this);
+                    }
+                });
             }
         };
     }
