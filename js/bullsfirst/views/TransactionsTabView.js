@@ -15,14 +15,20 @@
  */
 
 /**
- * bullsfirst/views/TransactionsTabView
+ * app/domain/Positions
  *
  * @author Naresh Bhatia
  */
-define(function() {
+define(
+    [
+        'app/domain/Position',
+        'backbone'
+    ],
+    function(Position, Backbone) {
+        'use strict';
 
-    return Backbone.View.extend({
-
-        el: '#transactions-tab'
-    });
-});
+        return Backbone.Collection.extend({
+            model: Position
+        });
+    }
+);

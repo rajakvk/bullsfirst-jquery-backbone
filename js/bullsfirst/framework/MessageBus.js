@@ -15,27 +15,49 @@
  */
 
 /**
- * bullsfirst/framework/MessageBus
+ * app/domain/Position
  *
- * Provides the ability to publish and subscribe to messages.
+ * Attributes:
+ *   accountId: int
+ *   accountName: String
+ *   instrumentSymbol: String
+ *   instrumentName: String
+ *   lotId: int
+ *   lotCreationTime: Date
+ *   quantity: int
+ *   marketValue: Money
+ *   lastTrade: Money
+ *   pricePaid: Money
+ *   totalCost: Money
+ *   gain: Money
+ *   gainPercent: Decimal (e.g. 0.25 = 25%)
+ *   children: [Position]
+ *
+ * Calculated Attributes:
+ *   isInstrumentPosition: boolean
+ *   isTradable: boolean
  *
  * @author Naresh Bhatia
  */
-define(function() {
+define(
+    [
+        'backbone'
+    ],
+    function(Backbone) {
+        'use strict';
 
-    var _messageBus = _.extend({}, Backbone.Events);
+        return Backbone.Model.extend({
 
-    return {
-        on: function(events, callback, context) {
-            _messageBus.on(events, callback, context);
-        },
+            initialize: function() {
 
-        off: function(events, callback, context) {
-            _messageBus.off(events, callback, context);
-        },
-
-        trigger: function(events) {
-            _messageBus.trigger.apply(_messageBus, arguments);
-        }
+                // Initialize calculated fields
+                var isInstrumentPosition = typeof this.get('lotId') === 'undefined';
+                var isTradable = isInstrumentPosition && this.get('instrumentSymbol') !== 'CASH';
+                this.set({
+                    isInstrumentPosition: isInstrumentPosition,
+                    isTradable: isTradable
+                });
+            }
+        });
     }
-});
+);

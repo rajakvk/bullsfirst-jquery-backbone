@@ -1,0 +1,81 @@
+/* -----------------------------------------------------------------------------
+ * modals
+ * -------------------------------------------------------------------------- */
+
+.modal {
+    font: 12px/25px Aller;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 291px;
+    z-index: 490;
+
+    &.stacked {
+        z-index: 500;
+    }
+
+    &.theme-a {
+        background: #3F3F3F;
+        border: 10px solid rgba(255, 255, 255, 0.3);
+        color: $white;
+        @include background-clip(padding-box);
+    }
+
+    &.theme-b {
+        background: $brand-color;
+        border: 10px solid $container-background-color;
+        color: $black;
+        @include background-clip(padding-box);
+    }
+
+    .header {
+        padding: 10px 10px 20px 10px;
+
+        h1 {
+            font: normal normal 16px Aller;
+        }
+
+        .close-button {
+            background: url(../img/modal-close.png) no-repeat;
+            float: right;
+            height: 17px;
+            width: 17px;
+        }
+    }
+
+    .body {
+        padding: 10px;
+    }
+
+    table {
+        width: 99%;
+    }
+
+    th {
+        text-align: left;
+        padding-left: 16px;
+    }
+
+    tr:nth-child(odd) {
+        background: $modal-table-stripe;
+    }
+}
+
+.modal-overlay {
+    background: #3F3F3F;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 489;
+
+    &.stacked {
+        z-index: 499;
+    }
+
+    &.visible {
+        opacity: 0.75;
+    }
+}

@@ -15,22 +15,25 @@
  */
 
 /**
- * bullsfirst/views/UsernameView
+ * app/services/InstrumentService
  *
  * @author Naresh Bhatia
  */
 define(function() {
-    return Backbone.View.extend({
-        el: '.username-view',
+    'use strict';
 
-        initialize: function() {
-            this.model.on('change', this.render, this);
-        },
+    return {
+        getInstruments: function(doneCallbacks, failCallbacks, context) {
 
-        render: function() {
-            this.$el.html(
-                this.model.get('firstName') + ' ' +
-                this.model.get('lastName'));
+            // Handle an optional context parameter.
+            // Allows us to pass an execution context for callbacks
+            context = context || this;
+
+            $.ajax({
+                url: '/bfexch-javaee/rest/instruments',
+                context: context
+            })
+            .then(doneCallbacks, failCallbacks);
         }
-    });
+    };
 });
